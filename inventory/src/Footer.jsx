@@ -1,6 +1,5 @@
 import { faFacebook, faGithub, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from "react";
 import './css/footer.css';
 const Footer = () => {
   return (
@@ -38,11 +37,11 @@ const Footer = () => {
         <div className="footer-column">
           <h3>Follow Us</h3>
           <div className="footer-social">
-            <a href="https://www.facebook.com/krishna.budumuru.5" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook}/></a>
-            <a href="https://x.com/BudumuruMohan" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter}/></a>
-            <a href="https://www.instagram.com/krishna_5488_/?hl=en" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram}/></a>
-            <a href="https://www.linkedin.com/in/krishna-mohan-2a2971259/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn}/></a>
-            <a href="https://github.com/Mohan5488" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faFacebook}/></a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faTwitter}/></a>
+            <a href="https://www.instagram.com/_lovely__raju_/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram}/></a>
+            <a href="https://www.linkedin.com/in/raju-chowdavada-06b734347/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedinIn}/></a>
+            <a href="https://github.com/23335a0504raju/" target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} /></a>
           </div>
         </div>
       </div>
