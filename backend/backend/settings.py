@@ -1,6 +1,8 @@
 
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,13 +11,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-6+lg6r#ys^mwyf8t8+7-c%9e36!%9#j2%9d23c_#c7=p^rjx5i"
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key-for-dev-only')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ALLOWED_HOSTS = [
+    'inventory-pi-smoky.vercel.app',
+    'inventory-iplt.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
-ALLOWED_HOSTS = []
+CORS_ALLOWED_ORIGINS = [
+    "https://inventory-pi-smoky.vercel.app",
+    "https://inventory-iplt.onrender.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://inventory-pi-smoky.vercel.app",
+    "https://inventory-iplt.onrender.com",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -43,10 +60,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'connect.auth_backend.EmailBackend', 
-    'django.contrib.auth.backends.ModelBackend', 
-]
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
@@ -78,7 +91,9 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Use database for session storage
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
 
@@ -101,18 +116,23 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "backend.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Database Configuration
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+# For Render.com ephemeral storage workaround
+if os.getenv('RENDER', None):
+    DATABASES['default']['NAME'] = '/tmp/db.sqlite3'
+
+# Authentication
+AUTHENTICATION_BACKENDS = [
+    'connect.auth_backend.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -148,7 +168,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+# Static files for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
