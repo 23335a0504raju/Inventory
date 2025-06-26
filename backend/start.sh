@@ -1,22 +1,23 @@
 #!/bin/bash
-set -o errexit
 
+# Exit immediately if a command exits with a non-zero status
+set -e
 
+# Install dependencies (in case any were added after build)
 pip install -r requirements.txt
 
-# Create directories
-mkdir -p /opt/render/project/src/backend/media
-mkdir -p /opt/render/project/src/backend/staticfiles
-
-# Apply database migrations
-python manage.py migrate
+# Run database migrations
+python manage.py migrate --noinput
 
 # Collect static files
 python manage.py collectstatic --noinput
 
-# Start Gunicorn
-exec gunicorn backend.wsgi:application \
-    --bind 0.0.0.0:$PORT \
-    --workers 4 \
-    --timeout 120 \
-    --log-level=info
+# Start Gunicorn (or Daphne if you're using WebSockets)
+if [ "$USE_DAPHNE" = "true" ]; then
+    daphne -b 0.0.0.0 -p $PORT your_project_name.asgi:application
+else
+    exec gunicorn your_project_name.wsgi:application \
+        --bind 0.0.0.0:$PORT \
+        --workers 3 \
+        --timeout 120
+fi
