@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import { useEffect, useState } from "react";
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const MonthlyRevenueChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/monthly_revenue_trends/",{
+    fetch("https://inventory-iplt.onrender.com/api/analytics/monthly_revenue_trends/",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
+import { useEffect, useState } from "react";
+import { Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 const CustomerPurchasesChart = () => {
   const [data, setData] = useState([]);
   const token = localStorage.getItem("token")
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/customer_purchases_distribution/",{
+    fetch("https://inventory-iplt.onrender.com/api/analytics/customer_purchases_distribution/",{
       method: "GET",
       headers: {
         'Authorization': `Token ${token}`, 

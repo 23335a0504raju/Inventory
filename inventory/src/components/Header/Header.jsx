@@ -7,7 +7,7 @@ import logo from '../../Assets/images/logo.png';
 import userimg from '../../Assets/images/user.jpg';
 import SearchBox from '../SearchBox/SearchBox';
 
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import MailIcon from '@mui/icons-material/Mail';
@@ -51,7 +51,7 @@ const Header=()=>{
     
       const fetchProducts = async () => {
         try {
-          const response = await fetch("http://localhost:8000/api/products-view/", {
+          const response = await fetch("https://inventory-iplt.onrender.com/api/products-view/", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

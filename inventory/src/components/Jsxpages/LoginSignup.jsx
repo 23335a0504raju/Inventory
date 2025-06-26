@@ -24,8 +24,8 @@ const LoginSignup = () => {
   
   const handleSubmit = async () => {
     const endpoint = action === "Login" 
-      ? "http://127.0.0.1:8000/api/login/" 
-      : "http://127.0.0.1:8000/api/register/";
+      ? "https://inventory-iplt.onrender.com/api/login/" 
+      : "https://inventory-iplt.onrender.com/api/register/";
     
     const payload = action === "Login"
       ? { email: formData.email, password: formData.password }

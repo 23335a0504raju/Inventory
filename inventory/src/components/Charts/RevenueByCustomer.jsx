@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { useEffect, useState } from "react";
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const RevenueByCustomer = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/revenue_by_customer/",{
+    fetch("https://inventory-iplt.onrender.com/api/analytics/revenue_by_customer/",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

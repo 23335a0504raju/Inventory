@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { useEffect, useState } from "react";
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const StockChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/remaining_stock_per_product/",{
+    fetch("https://inventory-iplt.onrender.com/api/analytics/remaining_stock_per_product/",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

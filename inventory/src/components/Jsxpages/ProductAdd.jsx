@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProductAdd = () => {
   const [product, setProduct] = useState({
@@ -30,7 +30,7 @@ const ProductAdd = () => {
       return;
     }
 
-    const endpoint = "http://localhost:8000/api/products-view/";
+    const endpoint = "https://inventory-iplt.onrender.com/api/products-view/";
     const payload = {
       productname: product.name,
       total_qty : product.qty,

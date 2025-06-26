@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import '../css/login.css'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../css/login.css';
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState('');
@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault(); // Prevent form reload
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/login/', {
+      const response = await fetch('https://inventory-iplt.onrender.com/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

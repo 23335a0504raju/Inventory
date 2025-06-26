@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { useEffect, useState } from "react";
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 const ProfitMargin = () => {
   const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ const ProfitMargin = () => {
   };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/profit_margin_analysis/", {
+    fetch("https://inventory-iplt.onrender.com/api/analytics/profit_margin_analysis/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

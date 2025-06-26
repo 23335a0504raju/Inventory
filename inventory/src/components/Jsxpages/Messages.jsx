@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Messages = () => {
   const [products, setProducts] = useState([]);
@@ -15,7 +15,7 @@ const Messages = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/products-view/", {
+      const response = await fetch("https://inventory-iplt.onrender.com/api/products-view/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

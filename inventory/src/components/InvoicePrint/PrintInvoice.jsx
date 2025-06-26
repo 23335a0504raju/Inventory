@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
-import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import "../InvoicePrint/PrintInvoice.css";
 
 const PrintInvoice = () => {
@@ -15,7 +15,7 @@ const PrintInvoice = () => {
 
   const fetchInvoice = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/invoice/${id}/`, {
+      const response = await fetch(`https://inventory-iplt.onrender.com/api/invoice/${id}/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

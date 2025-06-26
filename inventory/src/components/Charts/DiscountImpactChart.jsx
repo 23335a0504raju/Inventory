@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { useEffect, useState } from "react";
+import { ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts";
 
 const DiscountImpactChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/discount_vs_sales/", {
+    fetch("https://inventory-iplt.onrender.com/api/analytics/discount_vs_sales/", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

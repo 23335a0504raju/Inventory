@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const InvoiceList = () => {
@@ -30,7 +30,7 @@ const InvoiceList = () => {
   const fetchInvoices = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8000/api/invoices/", {
+      const response = await fetch("https://inventory-iplt.onrender.com/api/invoices/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const InvoiceList = () => {
   const confirmUpdateStatus = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/invoice/${selectedInvoice.id}/update-status/`,
+        `https://inventory-iplt.onrender.com/api/invoice/${selectedInvoice.id}/update-status/`,
         {
           method: "PATCH",
           headers: {

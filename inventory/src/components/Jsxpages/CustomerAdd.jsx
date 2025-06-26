@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const CustomerAdd = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const CustomerAdd = () => {
     if (!window.confirm("Are you sure you want to add this customer?")) return;
 
     setLoading(true);
-    const endpoint = "http://127.0.0.1:8000/api/customeradd/";
+    const endpoint = "https://inventory-iplt.onrender.com/api/customeradd/";
     const payload = {
       username,
       ...formData,

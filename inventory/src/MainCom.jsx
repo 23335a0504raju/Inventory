@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom" 
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function MainCom(){
@@ -11,7 +11,7 @@ function MainCom(){
     useEffect(() => {
         const fetchMainData = async () => {
           try {
-            const response = await fetch('http://127.0.0.1:8000/api/home/', {
+            const response = await fetch('https://inventory-iplt.onrender.com/api/home/', {
               method: 'GET',
               headers: {
                 'Authorization': `Token ${token}`, 

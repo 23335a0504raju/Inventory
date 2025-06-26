@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { useEffect, useState } from "react";
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const ProductSalesTrend = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/product_sales_trend/", {
+    fetch("https://inventory-iplt.onrender.com/api/analytics/product_sales_trend/", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

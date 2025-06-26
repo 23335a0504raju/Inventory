@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import { useEffect, useState } from "react";
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const BigSpenders = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/big_spenders/", {
+    fetch("https://inventory-iplt.onrender.com/api/analytics/big_spenders/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

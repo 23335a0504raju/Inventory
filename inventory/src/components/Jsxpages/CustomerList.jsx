@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
@@ -9,7 +9,7 @@ const CustomerList = () => {
 
   const fetchCustomers = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/customer/");
+      const response = await fetch("https://inventory-iplt.onrender.com/api/customer/");
       const data = await response.json();
       setCustomers(data.data);
     } catch (error) {
@@ -20,7 +20,7 @@ const CustomerList = () => {
   const deleteCustomer = async (customerName) => {
   
     try {
-      const response = await fetch("http://localhost:8000/api/customer/", {
+      const response = await fetch("https://inventory-iplt.onrender.com/api/customer/", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ customer_name: customerName }),

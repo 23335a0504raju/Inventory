@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const InvoiceCreate = () => {
   const [invoiceType, setInvoiceType] = useState("invoice");
@@ -21,7 +21,7 @@ const InvoiceCreate = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/customer/");
+        const response = await fetch("https://inventory-iplt.onrender.com/api/customer/");
         const data = await response.json();
 
         if (Array.isArray(data)) {
@@ -42,7 +42,7 @@ const InvoiceCreate = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/products-view/",{
+        const response = await fetch("https://inventory-iplt.onrender.com/api/products-view/",{
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -128,7 +128,7 @@ const InvoiceCreate = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:8000/api/create-invoice/", {
+      const response = await fetch("https://inventory-iplt.onrender.com/api/create-invoice/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

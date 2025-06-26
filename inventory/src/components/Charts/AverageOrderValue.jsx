@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { useEffect, useState } from "react";
+import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const AverageOrderValueLineChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/analytics/average_order_value/",{
+    fetch("https://inventory-iplt.onrender.com/api/analytics/average_order_value/",{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

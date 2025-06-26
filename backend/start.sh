@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # Exit immediately if a command exits with a non-zero status
-set -e
+set -o errexit
 
+# First install build dependencies
+pip install --upgrade pip setuptools wheel
+pip install numpy==1.26.4 scikit-learn==1.4.0
 # Install dependencies (in case any were added after build)
 pip install -r requirements.txt
 

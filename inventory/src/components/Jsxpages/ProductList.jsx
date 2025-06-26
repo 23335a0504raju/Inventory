@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ProductTable = () => {
   const [showModal, setShowModal] = useState(false);
@@ -16,7 +16,7 @@ const ProductTable = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/products-view/", {
+      const response = await fetch("https://inventory-iplt.onrender.com/api/products-view/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const ProductTable = () => {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/products-view/?product_id=${selectedProduct}`, {
+      const response = await fetch(`https://inventory-iplt.onrender.com/api/products-view/?product_id=${selectedProduct}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const ProductTable = () => {
 
   const confirmUpdate = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/products-view/?id=${selectedProduct}`, {
+      const response = await fetch(`https://inventory-iplt.onrender.com/api/products-view/?id=${selectedProduct}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const ProductTable = () => {
 
   const confirmUpdateStock = async ()=>{
     try {
-      const response = await fetch(`http://localhost:8000/api/products-view/?id=${selectedProduct}`, {
+      const response = await fetch(`https://inventory-iplt.onrender.com/api/products-view/?id=${selectedProduct}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
