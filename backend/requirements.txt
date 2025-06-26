@@ -8,4 +8,4 @@ python-dotenv==1.0.0
 daphne==4.0.0
 channels==4.0.0
 twilio==9.0.1
-numpy==3.11.0
+numpy==1.26.4  
