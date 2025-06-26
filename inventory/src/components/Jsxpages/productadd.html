@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Products Add</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+<h1>Add Products</h1>
+<hr>
+
+<table class="table table-bordered table-hover table-striped" id="invoice_table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Sub Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="text" class="form-control" name="invoice_product[]" placeholder="Enter Product Name OR Description"></td>
+            <td><input type="number" class="form-control" name="invoice_product_qty[]" value="1"></td>
+            <td><input type="number" class="form-control" name="invoice_product_price[]" placeholder="0.00"></td>
+            <td><input type="text" class="form-control" name="invoice_product_discount[]" placeholder="Enter % OR value"></td>
+            <td><input type="text" class="form-control" name="invoice_product_sub[]" value="0.00" ></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="col-xs-6 margin-top btn-group">
+    <input type="submit" id="action_create_invoice" class="btn btn-success float-right" value="Add Product">
+</div>
+</body>
+</html>

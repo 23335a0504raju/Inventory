@@ -1,0 +1,149 @@
+
+import React, { useState } from 'react';
+
+const ProductAdd = () => {
+  const [invoiceType, setInvoiceType] = useState('invoice');
+  const [invoiceStatus, setInvoiceStatus] = useState('open');
+  const [products, setProducts] = useState([
+    { name: '', qty: 1, price: '', discount: '', subTotal: 0 },
+  ]);
+
+  const handleAddProduct = () => {
+    setProducts([
+      ...products,
+      { name: '', qty: 1, price: '', discount: '', subTotal: 0 },
+    ]);
+  };
+
+  const handleProductChange = (index, field, value) => {
+    const updatedProducts = [...products];
+    updatedProducts[index][field] = value;
+
+    // Recalculate subtotal for the product
+    if (field === 'qty' || field === 'price' || field === 'discount') {
+      const qty = updatedProducts[index].qty;
+      const price = updatedProducts[index].price;
+      const discount = updatedProducts[index].discount;
+      const discountAmount =
+        discount.includes('%')
+          ? (parseFloat(discount) / 100) * price * qty
+          : parseFloat(discount) * qty;
+      const subTotal = qty * price - discountAmount;
+      updatedProducts[index].subTotal = subTotal;
+    }
+
+    setProducts(updatedProducts);
+  };
+
+  return (
+    <div className="container-fluid mt-4 px-lg-5">
+      <h2 className="text-center text-primary">
+        Create New <span className="invoice_type">Invoice</span>
+      </h2>
+      <hr />
+
+      <div id="response" className="alert alert-success d-none">
+        <button className="btn-close" data-bs-dismiss="alert"></button>
+        <div className="message"></div>
+      </div>
+
+      <form id="create_invoice">
+        <input type="hidden" name="action" value="create_invoice" />
+
+    
+        {/* Invoice Table */}
+        <div className="table-responsive mt-4">
+          <table className="table table-bordered table-hover text-center">
+            <thead className="table-dark">
+              <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Sub Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product, index) => (
+                <tr key={index}>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={product.name}
+                      onChange={(e) =>
+                        handleProductChange(index, 'name', e.target.value)
+                      }
+                      placeholder="Product Name"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      className="form-control"
+                      value={product.qty}
+                      onChange={(e) =>
+                        handleProductChange(index, 'qty', e.target.value)
+                      }
+                      defaultValue="1"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      className="form-control"
+                      value={product.price}
+                      onChange={(e) =>
+                        handleProductChange(index, 'price', e.target.value)
+                      }
+                      placeholder="0.00"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={product.discount}
+                      onChange={(e) =>
+                        handleProductChange(index, 'discount', e.target.value)
+                      }
+                      placeholder="Enter % or value"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={product.subTotal.toFixed(2)}
+                      disabled
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Add Product Button */}
+        <div className="d-flex justify-content-end">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleAddProduct}
+          >
+            Add Product
+          </button>
+        </div>
+
+        {/* Submit Button */}
+        <div className="d-flex justify-content-end mt-4">
+          <button type="button" className=" btn-success px-4">
+            Add Product
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default ProductAdd;

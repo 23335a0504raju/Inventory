@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="login.css">
+  <title>Login</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .success {
+      color: green;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="box">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <button type="submit">Login</button>
+    </form>
+    <p id="message"></p>
+  </div>
+</div>
+
+
+
+</body>
+</html>

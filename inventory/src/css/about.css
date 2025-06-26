@@ -1,0 +1,128 @@
+.about {
+    margin-top: 50px;
+    padding: 10px 10%;
+    background: linear-gradient(135deg, #f8f8f8, #e6e6e6);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.about .first {
+    max-width: 850px;
+    margin: 0 auto 30px;
+    font-size: 18px;
+    color: #333;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+.about .row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.about .about-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    flex: 1;
+    max-width: 320px;
+    min-width: 280px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.about .about-content:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about .about-content h2 {
+    font-size: 20px;
+    color: #222;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.about .about-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .about .about {
+        padding: 40px 5%;
+    }
+
+    .about .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about .about-content {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+}
+.about .slide {
+    background-color: #f1f1f1;
+    margin: auto;
+    position: relative;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    overflow: hidden; 
+}
+
+.about .Arrow {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: 0.3s;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.about .Arrow.right {
+    right: 10px;
+}
+.about .Arrow.left {
+    left: 10px;
+}
+.about .Arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.about .slider {
+    width: 100%;
+    overflow: hidden;
+}
+
+.about .slider-content {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 400%;
+}
+
+.about .slide-content {
+    min-width: 100%;
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

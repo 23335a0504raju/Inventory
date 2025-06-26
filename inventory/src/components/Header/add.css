@@ -1,0 +1,780 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  font-family: "Open Sans", sans-serif;
+  background: #ede9e9;
+}
+header {
+  width: 100%;
+  height: 89px;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+header .logo img {
+  width: 140px;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+header .logo span {
+  color: #2c2b2b;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+/* Buttons */
+header button.rounded-circle {
+  min-width: 36px !important;
+  width: 36px;
+  height: 36px;
+  background: #f0f5ff;
+  color: #292929;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header button.rounded-circle svg {
+  font-size: 16px !important;
+}
+
+header button.rounded-circle svg:hover {
+  color: #0858f7;
+  transition: 0.2s ease-in-out;
+}
+
+/* Search Box */
+.searchBox {
+  width: 350px;
+  height: 36px;
+  background: #f0f5ff;
+  border-radius: 6px;
+  padding: 3px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.searchBox input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding-left: 0;
+  font-size: 14px;
+  color: #292929;
+}
+
+/* User Account */
+.myAcc {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.myAcc .UserImg {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgb(13, 13, 106);
+}
+
+.myAcc .UserImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.myAcc .userinfo {
+  padding-left: 8px;
+}
+
+.myAcc .userinfo h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.myAcc .userinfo p {
+  font-size: 12px;
+  color: black;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+@media (max-width: 992px) {
+  .searchBox {
+    width: 280px; /* Increased width for better usability */
+  }
+
+  .part1 {
+    flex: 1;
+    text-align: center;
+  }
+
+  .part2 {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centers items vertically */
+  }
+
+  .part3 {
+    flex: 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 100px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+  }
+ 
+  .searchBox {
+    width: 85%; /* Slightly reduced width for balance */
+    max-width: 320px;
+    margin: 10px 0; /* Adds spacing for better separation */
+  }
+
+  .part1,
+  .part2,
+  .part3 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px; /* Reduced margin for better spacing */
+  }
+
+  .myAcc .userinfo {
+    display: none; /* Hides user info for small screens */
+  }
+
+  .part3 {
+    justify-content: center; /* Ensures alignment remains consistent */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 8=90px !important; /* Reduce header height */
+    padding: 5px 10px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; /* Adds spacing between elements */
+  }
+
+  .searchBox {
+    display: none !important; /* Hide search box only on mobile */
+  }
+
+  .logo img {
+  display:none;
+}
+
+  .part1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .part2 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .part3 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  header button.rounded-circle {
+    width: 30px !important;
+    height: 30px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .myAcc .userinfo {
+    display: none; /* Hide user info */
+  }
+}
+
+.main .sidebarWrapper{
+  width:20%;
+  flex:0 0 20%;
+  transition: 0.3s all ease-in-out;
+}
+
+.main .sidebarWrapper .sidebar{
+  width:17%;
+  height:100vh;
+  position: fixed;
+  top:90px;
+  left:0px;
+  background: white;
+  transition: all 0.3s ease-in-out;
+}
+.main .sidebarWrapper.toggle {
+  width: 60px;
+  flex: 0 0 60px;
+}
+
+.main .sidebarWrapper.toggle .sidebar {
+  width: 0;
+  overflow: visible;
+}
+.main .sidebarWrapper .sidebar ul{
+  margin-bottom: 0px;
+}
+.main .sidebarWrapper .sidebar ul li{
+  list-style: none;
+}
+
+.main .sidebarWrapper .sidebar ul li button{
+  color:#000;
+  height: 50px !important;
+  text-align: left;
+  justify-content: left;
+  border-radius: 0px !important;
+  padding:12px 15px !important;
+  align-items: baseline;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.main .sidebarWrapper.toggle .sidebar ul li button {
+  justify-content: center;
+  padding: 12px !important;
+}
+
+.main .sidebarWrapper.toggle .sidebar ul li button h6 {
+  display: none; /* Hide text but keep icons */
+}
+
+.main .sidebarWrapper.toggle .sidebar ul li button .icon {
+  margin-right: 0; /* Center icons properly */
+}
+.main .sidebarWrapper .sidebar ul li button:hover {
+  color:#0858f7;
+}
+
+.main .sidebarWrapper .sidebar ul li button h6{
+  margin-bottom: 10px !important;
+}
+.main .sidebarWrapper .sidebar ul li button .icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:25px;
+  height: 25px;
+  margin-right: 10px;
+}
+.main .sidebarWrapper .sidebar ul li button svg{
+  color:#000;
+  opacity:0.8;
+  font-size: 15px;
+}
+.main .sidebarWrapper .sidebar ul li button .arrow{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:10px;
+  height: 10px;
+}
+
+.logoutWrapper {
+ display: flex;
+ flex-direction: column;
+ margin-top: 45px;
+}
+
+.logoutWrapper .logoutBox {
+  width: 100%;
+  height: 100px;
+  padding: 25px;
+  background: #e5e8ef;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+}
+
+
+.logoutWrapper .logoutBox button {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  background: #0858f7;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.logoutWrapper .logoutBox button:hover {
+  background: #0642b3;
+}
+
+.logoutWrapper .logoutBox button svg {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+/* Responsive Fixes */
+@media (max-width: 480px) {
+  .logoutWrapper {
+    padding: 0px 15px;
+    font-size: 10px;;
+  }
+
+  .logoutWrapper .logoutBox {
+    height: auto;
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logoutWrapper .logoutBox button {
+    width: 100%;
+    padding: 10px;
+  }
+}
+.main .content{
+  width:80%;
+  flex:0 0 80%;
+  transition: all 0.3s ease-in-out ;
+}
+
+.main .content .toggle{
+  width:100%;
+  flex:0 0 100%;
+}
+
+/* Mobile & Tablet View */
+@media (max-width: 992px) {
+  .main .sidebarWrapper {
+    width: 300px;
+    flex: 0 0 200px;
+    margin-top: 20px;
+  }
+
+  .main .content {
+    width: calc(100% - 200px);
+  }
+
+  .main .sidebarWrapper.toggle {
+    width: 60px;
+  }
+
+  .main .content.toggle {
+    width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 768px) {
+  .main .sidebarWrapper {
+    width: 60px;
+    flex: 0 0 60px;
+    
+  }
+
+  .main .content {
+    width: calc(100% - 60px);
+    
+  }
+
+  .main .sidebarWrapper .sidebar ul li button h6 {
+    display: none;
+  }
+
+  .logoutWrapper .logoutBox {
+    padding: 10px;
+  }
+
+  .logoutWrapper .logoutBox button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hide Sidebar */
+  .main .sidebarWrapper {
+    width: 0;
+    flex: 0 0 0;
+  }
+
+  /* Expand Content to Full Width */
+  .main .content {
+    width: 100%;
+  }
+
+  /* Sidebar Toggle */
+  .main .sidebarWrapper.toggle {
+    width: 50px !important;
+    flex: 0 0 140px;
+  }
+
+  /* Adjust Logout Wrapper */
+  .logoutWrapper {
+    width: 100px;
+   
+  }
+
+  /* Hide Text & Keep Only Icon in Logout Button */
+  .logoutWrapper .logoutBox button {
+    width: 100%;
+    font-size: 1px; /* Hide text */
+    margin-left: -10px;
+  }
+
+  /* Keep Logout Icon Visible */
+  .logoutWrapper .logoutBox button svg {
+    font-size: 12px;
+  }
+}
+
+
+
+
+
+
+.right-content{
+  padding:100px 0px;
+  overflow: hidden;
+}
+.recBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Allows absolute positioning for the button */
+  border: 2px solid transparent; 
+  background: linear-gradient(135deg, #f0f8ff, #dce6f7); 
+  width: 100%;
+  max-width: 95%; 
+  height: auto;
+  min-height: 70px;
+  margin-left: 5px;
+  margin-right: auto;
+  margin-bottom: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1); 
+  padding: 15px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.recBox:hover {
+  transform: scale(1.01);
+}
+
+.recBox h1 {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  text-align: left;
+  color: #333;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Align Button to the Right End */
+.recBox button.rounded-circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px !important;
+  width: 40px;
+  height: 40px;
+  background: #f0f5ff;
+  color: #292929;
+  border: none;
+  cursor: pointer;
+}
+
+.recBox button.rounded-circle svg {
+  color: #292929;
+  font-size: 22px !important;
+}
+
+.recBox button.rounded-circle:hover svg {
+  color: #0858f7;
+  transition: 0.2s ease-in-out;
+}
+
+
+@media (max-width: 768px) {
+  .recBox {
+    width: 95%;
+    padding: 12px;
+    margin-top: 20px;
+  }
+
+  .recBox h1 {
+    font-size: 1rem;
+    text-align: center; 
+  }
+}
+.recBox button.rounded-circle{
+ margin-left: 80%;
+}
+
+@media (max-width: 480px) {
+  .recBox {
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    max-width:250px;
+    margin-left: -100px;
+  }
+
+  .recBox h1 {
+    font-size: 0.9rem;
+  }
+}
+
+.dashboardBoxWrapper{
+  gap:20px;
+  width:100%;
+  flex-wrap: wrap;
+}
+.dashboardBoxWrapper .dashboardBox{
+  width:48%;
+  height:170px;
+  border-radius:10px;
+  overflow: hidden;
+  padding:20px;
+}
+.dashboardBoxWrapperRow .box{
+  width:90%;
+  height:100%;
+  background-color: #ccc;
+}
+
+.dashboardBoxWrapper .dashboardBox .col1 h4{
+  font-size: 15px;
+  font-weight: 600;
+}
+.dashboardBoxWrapper .dashboardBox .col2 .text-white{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
+  margin-top: 100%;
+
+}
+.dashboardBoxWrapper .dashboardBox .col1 span{
+  font-size: 30px !important;
+  font-weight:bold;
+  line-height: 45px;
+}
+.dashboardBoxWrapper .dashboardBox .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:45px;
+  height:45px;
+  border-radius: 5px;
+
+}
+.dashboardBoxWrapper .dashboardBox .icon svg{
+  font-size:45px;
+  opacity: 0.2;
+  color:rgb(16, 15, 15);
+}
+
+.dashboardBoxWrapper .dashboardBox .chart{
+
+  opacity: 0.1;
+  position: absolute;
+}
+.dashboardBoxWrapper .dashboardBox .chart svg{
+  font-size: 150px;
+  color:#000;
+}
+
+.graphBox{
+  background-image: linear-gradient(to right, rgb(100, 51, 164),rgb(31, 31, 137));
+  border-radius: 10px;
+  padding:25px;
+}
+.graphBox .icon {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width:45px;
+  height:45px;
+  border-radius: 5px;
+
+}
+.graphBox .icon svg{
+  font-size:45px;
+  opacity: 0.2;
+  color:rgb(16, 15, 15);
+}
+/* Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .dashboardBoxWrapper .dashboardBox {
+    width: 100%; /* Full width */
+  }
+
+  .right-content {
+    padding-left: 10px;
+  }
+}
+
+/* Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .dashboardBoxWrapper {
+    gap: 10px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox {
+    width: 100%; /* Single column */
+    height: auto; /* Adjust height */
+    padding: 15px;
+  }
+
+  .right-content {
+    padding-left: 100px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .col1 h4 {
+    font-size: 14px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .col1 span {
+    font-size: 24px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .icon svg {
+    font-size: 35px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .chart svg {
+    font-size: 80px;
+  }
+  .graphBox{
+    margin:20px;
+  }
+}
+
+/* Small Mobile Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .dashboardBoxWrapper {
+    gap: 5px;
+    margin-left: -100px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox {
+    padding: 10px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .col1 h4 {
+    font-size: 12px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .col1 span {
+    font-size: 20px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .dashboardBoxWrapper .dashboardBox .icon svg {
+    font-size: 30px;
+  }
+}
+
+
+
+
+
+::-webkit-scrollbar {
+  width: 8px; 
+  height: 8px; 
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #21075f, #1c1580); 
+  border-radius: 10px; 
+  transition: 0.3s;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #180e5a, #2c78e5);
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+.custom-btn {
+  display: block;
+  margin: 30px auto; /* Auto-centers horizontally */
+ 
+  transition: all 0.3s ease;
+  border: none;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative; /* Helps with centering */
+}
+
+.custom-btn:hover {
+  background-color: #218838 !important;
+  color:#ede9e9;
+  transform: scale(1.05);
+}

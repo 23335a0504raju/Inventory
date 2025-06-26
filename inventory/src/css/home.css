@@ -1,0 +1,86 @@
+.home {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('../Assets/pexels-eduschadesoares-5498224.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+.home .text1 {
+    max-width: 800px;
+    padding: 20px;
+}
+
+.home .text1 h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.home .text1 h2 {
+    font-size: 1.2rem;
+    font-weight: 150;
+    margin-bottom: 20px;
+
+}
+.home .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; 
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 20px;
+}
+
+.home .get-started {
+    background-color: transparent;
+    border: 1px solid #fff;
+    transition: all 0.5s ease;
+}
+
+.home .get-started:hover {
+    background-color: #218838;
+    border: none;
+}
+
+.home .learn-more {
+    border: 1px solid #fff;
+    transition: all 0.5s ease;
+}
+
+.home .learn-more:hover {
+    background-color: #0056b3;
+    border: none;
+}
+@media (max-width : 750px) {
+    .home .text1 h1{
+        font-size: 1.3rem;
+        font-weight: bold
+    }
+    .home .text1 h2{
+        font-size: 1.1rem;
+    }
+    .home .buttons{
+        display: flex;
+    }
+    .home .btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 20px;
+        font-size: 0.6rem;
+    }
+}

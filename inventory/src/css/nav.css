@@ -1,0 +1,109 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: background-color 0.3s ease-in-out;
+    padding: 0 20px;
+    z-index: 1000;
+}
+
+nav.transparent {
+    background-color: transparent;
+    color: white;
+}
+
+nav.colored {
+    background-color: #3F4F44;
+    color: white;
+}
+
+nav .nav-links ul li, .auth ul li {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 17px;
+    color: #fff;
+}
+
+nav .nav-link {
+    color: black;
+    text-decoration: none;
+}
+
+nav .login,
+nav .logout {
+    padding: 10px 30px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+nav .auth li {
+    color: black;
+}
+
+nav .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+
+nav .sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    transition: right 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1100;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px ;
+}
+nav .sidebar.open {
+    right: 0;
+}
+
+nav .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 50px;
+}
+
+nav .sidebar ul li {
+    padding: 15px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+nav .sidebar ul li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+nav .close-btn {
+    font-size: 24px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+nav .bars {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+@media (max-width: 750px) {
+    nav .nav-links, .auth {
+        display: none;
+    }
+    nav .bars {
+        display: block;
+    }
+}
