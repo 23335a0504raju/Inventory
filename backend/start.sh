@@ -2,8 +2,8 @@
 set -o errexit
 
 # Install dependencies
-pip install --upgrade pip
-pip install --no-cache-dir -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install --no-cache-dir -r requirements.txt
 
 # Database setup
 python manage.py migrate --noinput
