@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { CiViewTable } from "react-icons/ci";
 import { FaDatabase, FaShoppingCart, FaUsers } from "react-icons/fa";
@@ -85,7 +85,7 @@ const Dashboard = () => {
  
   useEffect(() => {
     
-      fetch("http://localhost:8000/api/analytics/total_revenue/", {
+      fetch("https://inventory-iplt.onrender.com/api/analytics/total_revenue/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const Dashboard = () => {
         .catch((error) => console.error("Error fetching data:", error));
     }, []);
     useEffect(() => {
-      fetch("http://localhost:8000/api/analytics/total_users/", {
+      fetch("https://inventory-iplt.onrender.com/api/analytics/total_users/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
