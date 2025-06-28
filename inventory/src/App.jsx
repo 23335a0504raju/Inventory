@@ -67,7 +67,7 @@ function App() {
             <Header />
             <div className="main d-flex">
               <div className={`sidebarWrapper ${isToggleSidebar ? 'toggle' : ''}`}>
-                <SideBar />
+                <SideBar/>
               </div>
               <div className={`content ${isToggleSidebar ? 'toggle' : ''}`}>
                 <Routes>

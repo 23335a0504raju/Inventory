@@ -11,7 +11,5 @@ twilio==9.0.1
 numpy==1.26.4
 scikit-learn==1.6.1
 joblib==1.4.0
-dj-database-url==2.1.0
-psycopg2-binary==2.9.9
 wheel
 setuptools==65.5.0
