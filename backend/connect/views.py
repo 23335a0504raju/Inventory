@@ -380,7 +380,7 @@ class InvoiceUpdateStatusView(generics.UpdateAPIView):
         invoice.save()
         return Response({"message": "Invoice status updated successfully"}, status=status.HTTP_200_OK)
 
-
+import joblib
 from sklearn.neural_network import MLPClassifier
 
 model = MLPClassifier() 
@@ -389,7 +389,7 @@ joblib.dump(model, 'mlp_multi_model_new.pkl')
 
 from .serializers import PredictionSerializer
 
-import joblib
+
 from django.conf import settings
 import os
 
