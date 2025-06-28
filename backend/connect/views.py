@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .serializers import *
+import logging
+logger = logging.getLogger(__name__)
 
 
 
@@ -379,8 +381,6 @@ class InvoiceUpdateStatusView(generics.UpdateAPIView):
         return Response({"message": "Invoice status updated successfully"}, status=status.HTTP_200_OK)
 
 
-
-import joblib
 from sklearn.neural_network import MLPClassifier
 
 model = MLPClassifier() 
@@ -400,7 +400,7 @@ try:
 except Exception as e:
     logger.error(f"Model loading failed: {str(e)}")
     model = None
-    
+
 # Then modify your view to check if model exists
 class AnalyticsView(APIView):
     def post(self, request):
@@ -417,21 +417,23 @@ def load_model():
     global model
     if model is None:
         try:
+            import numpy as np
+            import sklearn
             model_path = os.path.join(settings.BASE_DIR, 'mlp_multi_model.pkl')
             model = joblib.load(model_path)
-            print("Model loaded successfully")
+            logger.info("Model loaded successfully")
         except Exception as e:
-            print(f"Error loading model: {str(e)}")
+            logger.error(f"Error loading model: {str(e)}")
             model = None
 
-# Load model when module is imported
+# Initialize model when module loads
 load_model()
+
 class ModelPredictView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
     
     def post(self, request):
-        # Ensure model is loaded
         if model is None:
             load_model()  # Try loading again if not loaded
             if model is None:
@@ -450,7 +452,6 @@ class ModelPredictView(APIView):
         data = serializer.validated_data
         season = data['season'].lower()
         
-        # Validate season
         season_mapping = {
             'rainy': [1, 0, 0, 0],
             'spring': [0, 1, 0, 0],
@@ -498,7 +499,7 @@ class ModelPredictView(APIView):
             )
             
         except Exception as e:
-            logger.error(f"Prediction failed: {str(e)}")  # Add proper logging
+            logger.error(f"Prediction failed: {str(e)}")
             return Response(
                 {"error": "An error occurred during prediction", "details": str(e)}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
