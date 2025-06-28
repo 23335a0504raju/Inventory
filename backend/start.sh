@@ -1,14 +1,14 @@
 #!/bin/bash
 set -o errexit
 
-# Install dependencies
+# Clean Python environment
 python -m pip install --upgrade pip
-python -m pip install --no-cache-dir -r requirements.txt
+python -m pip install --force-reinstall numpy==1.24.4
+python -m pip install -r requirements.txt
 
-# Verify model file exists
-if [ ! -f "mlp_multi_model.pkl" ]; then
-    echo "Warning: ML model file not found!"
-fi
+# Verify installations
+python -c "import numpy as np; print(f'Numpy version: {np.__version__}')"
+python -c "import sklearn; print(f'Scikit-learn version: {sklearn.__version__}')"
 
 # Database setup
 python manage.py migrate --noinput
