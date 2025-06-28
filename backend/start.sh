@@ -5,6 +5,11 @@ set -o errexit
 python -m pip install --upgrade pip
 python -m pip install --no-cache-dir -r requirements.txt
 
+# Verify model file exists
+if [ ! -f "mlp_multi_model.pkl" ]; then
+    echo "Warning: ML model file not found!"
+fi
+
 # Database setup
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput

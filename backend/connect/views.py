@@ -381,39 +381,126 @@ class InvoiceUpdateStatusView(generics.UpdateAPIView):
 
 
 import joblib
-import numpy as np
-model = joblib.load('mlp_multi_model.pkl')
+from sklearn.neural_network import MLPClassifier
+
+model = MLPClassifier() 
+
+joblib.dump(model, 'mlp_multi_model_new.pkl')
+
 from .serializers import PredictionSerializer
 
+import joblib
+from django.conf import settings
+import os
 
+try:
+    model_path = os.path.join(settings.BASE_DIR, 'mlp_multi_model.pkl')
+    model = joblib.load(model_path)
+except Exception as e:
+    print(f"Error loading model: {str(e)}")
+    model = None  # Or implement fallback behavior
+
+# Then modify your view to check if model exists
+class AnalyticsView(APIView):
+    def post(self, request):
+        if not model:
+            return Response({"error": "Model not loaded"}, status=500)
+        # Rest of your view logic
+
+import joblib
+from django.conf import settings
+import os
+
+# Initialize model as None at module level
+model = None
+
+def load_model():
+    global model
+    if model is None:
+        try:
+            model_path = os.path.join(settings.BASE_DIR, 'mlp_multi_model.pkl')
+            model = joblib.load(model_path)
+            print("Model loaded successfully")
+        except Exception as e:
+            print(f"Error loading model: {str(e)}")
+            model = None
+
+# Load model when module is imported
+load_model()
 class ModelPredictView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
+    
     def post(self, request):
-        print("Data", request.data)
+        # Ensure model is loaded
+        if model is None:
+            load_model()  # Try loading again if not loaded
+            if model is None:
+                return Response(
+                    {"error": "Prediction service is currently unavailable"}, 
+                    status=status.HTTP_503_SERVICE_UNAVAILABLE
+                )
+
         serializer = PredictionSerializer(data=request.data)
-        labels = ['Sneakers', 'Dresses', 'Sweaters', 'Sunglasses', 'T-Shirts', 'Scarf',
+        if not serializer.is_valid():
+            return Response(
+                {"error": "Invalid input data", "details": serializer.errors}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        data = serializer.validated_data
+        season = data['season'].lower()
+        
+        # Validate season
+        season_mapping = {
+            'rainy': [1, 0, 0, 0],
+            'spring': [0, 1, 0, 0],
+            'summer': [0, 0, 1, 0],
+            'winter': [0, 0, 0, 1]
+        }
+        
+        if season not in season_mapping:
+            return Response(
+                {"error": f"Invalid season '{season}'. Must be one of: {list(season_mapping.keys())}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
+        rainy, spring, summer, winter = season_mapping[season]
+        
+        features = [
+            data['month'], 
+            data['temp'], 
+            data['humidity'],
+            rainy, spring, summer, winter
+        ]
+        
+        try:
+            prediction = model.predict([features])
+            labels = [
+                'Sneakers', 'Dresses', 'Sweaters', 'Sunglasses', 'T-Shirts', 'Scarf',
                 'Light Jacket', 'Gloves', 'Umbrella', 'Raincoat', 'Jeans', 'Boots',
                 'Heavy Jacket', 'Shorts', 'Sandals', 'Quick-Dry Clothes',
-                'Thermal Wear', 'Waterproof Shoes']
-        if serializer.is_valid():
-            print("Serialized Data - ", serializer.validated_data)
-            data = serializer.validated_data
-            season = data['season']
-            rainy, spring, summer, winter = 0,0,0,0
-            if season == 'rainy':
-                rainy = 1
-            if season == 'spring':
-                spring = 1
-            if season =='summer':
-                summer = 1
-            if season == 'winter':
-                winter = 1
+                'Thermal Wear', 'Waterproof Shoes'
+            ]
+            prediction_list = list(prediction[0])
+            prediction_label = [
+                labels[i] for i, val in enumerate(prediction_list) if val == 1
+            ]
+            
+            if not prediction_label:
+                return Response(
+                    {'prediction': [], 'message': 'No recommended products for these conditions'},
+                    status=status.HTTP_200_OK
+                )
                 
-            features = [data['month'], data['temp'], data['humidity'],
-                        rainy, spring, summer, winter]    
-            prediction = model.predict([features])    
-            prediction_list = list(prediction[0])  
-            prediction_label = [labels[i] for i, val in enumerate(prediction_list) if val == 1]
-            return Response({'prediction': prediction_label}, status=status.HTTP_200_OK)
-        return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'prediction': prediction_label}, 
+                status=status.HTTP_200_OK
+            )
+            
+        except Exception as e:
+            logger.error(f"Prediction failed: {str(e)}")  # Add proper logging
+            return Response(
+                {"error": "An error occurred during prediction", "details": str(e)}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
