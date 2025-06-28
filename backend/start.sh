@@ -1,10 +1,11 @@
 #!/bin/bash
 set -o errexit
 
-# Force Python 3.12 environment
-export PYTHON_VERSION=3.12.12
+# Install system dependencies
+apt-get update
+apt-get install -y libpq-dev python3-dev
 
-# Install dependencies
+# Python dependencies
 pip install --upgrade pip
 pip install --no-cache-dir -r requirements.txt
 
