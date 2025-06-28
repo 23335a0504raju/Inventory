@@ -20,17 +20,17 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://inventory-pi-smoky.vercel.app",
-    "https://inventory-iplt.onrender.com",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+
 
 CSRF_TRUSTED_ORIGINS = [
     "https://inventory-pi-smoky.vercel.app",
     "https://inventory-iplt.onrender.com",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS.copy()
+CORS_ALLOW_CREDENTIALS = True
+
 
 # Application definition
 INSTALLED_APPS = [
