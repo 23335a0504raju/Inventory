@@ -5,14 +5,13 @@ set -o errexit
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# Run migrations
+# Database setup
 python manage.py migrate --noinput
-
-# Collect static files
 python manage.py collectstatic --noinput
 
 # Start server
 exec gunicorn backend.wsgi:application \
     --bind 0.0.0.0:$PORT \
     --workers 3 \
-    --timeout 120
+    --timeout 120 \
+    --log-level info
