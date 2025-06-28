@@ -1,22 +1,23 @@
-import { faBars, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faRightToBracket, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from '../src/Assets/images/logo.png';
 import "./css/nav.css";
+
 function NavBar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const [scroll, setScroll] = useState(false);
-    const [bar, setBar] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
             setIsLoggedIn(true);
         }
-    });
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -47,12 +48,43 @@ function NavBar() {
                     </ul>
                 </div>
                 <div className="auth">
-                            <NavLink className="nav-link login" to="/login">
-                                Login <FontAwesomeIcon icon={faRightToBracket} />
-                            </NavLink>
+                    <NavLink className="nav-link login" to="/login">
+                        Login <FontAwesomeIcon icon={faRightToBracket} />
+                    </NavLink>
                 </div>
-                <FontAwesomeIcon className="bars" onClick={() => setBar(true)} icon={faBars} />
+                <FontAwesomeIcon 
+                    className="bars" 
+                    onClick={() => setSidebarOpen(true)} 
+                    icon={faBars} 
+                />
             </nav>
+
+            {/* Sidebar */}
+            <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+                <FontAwesomeIcon 
+                    className="close-btn" 
+                    onClick={() => setSidebarOpen(false)} 
+                    icon={faTimes} 
+                />
+                <ul>
+                    <NavLink className="nav-link" to="/" onClick={() => setSidebarOpen(false)}>
+                        <li>Home</li>
+                    </NavLink>
+                    <NavLink className="nav-link" to="/about" onClick={() => setSidebarOpen(false)}>
+                        <li>About</li>
+                    </NavLink>
+                    <NavLink className="nav-link" to="/contact" onClick={() => setSidebarOpen(false)}>
+                        <li>Contact us</li>
+                    </NavLink>
+                    <NavLink 
+                        className="nav-link" 
+                        to="/login" 
+                        onClick={() => setSidebarOpen(false)}
+                    >
+                        <li>Login</li>
+                    </NavLink>
+                </ul>
+            </div>
         </>
     );
 }
