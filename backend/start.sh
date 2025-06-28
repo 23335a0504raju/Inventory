@@ -1,15 +1,15 @@
 #!/bin/bash
 set -o errexit
 
-# Install dependencies
+# Install dependencies with explicit PostgreSQL support
 pip install --upgrade pip
+pip install psycopg2-binary  # Explicitly install PostgreSQL adapter first
 pip install -r requirements.txt
 
-# Database check (without netcat)
+# Database check (Python-based)
 if [ -n "$DATABASE_URL" ]; then
     echo "Waiting for database to be ready..."
-    # Python-based port check alternative
-    python - <<END
+    python -c "
 import socket, os, time
 from urllib.parse import urlparse
 
@@ -19,15 +19,16 @@ if db_url:
     host = parsed.hostname
     port = parsed.port or 5432
     
-    while True:
+    for _ in range(10):  # Try 10 times
         try:
             with socket.create_connection((host, port), timeout=5):
-                print("Database is ready!")
-                break
+                print('Database is ready!')
+                exit(0)
         except (socket.error, socket.timeout) as e:
-            print(f"Waiting for database... ({e})")
+            print(f'Waiting for database... ({e})')
             time.sleep(2)
-END
+    exit(1)
+"
 fi
 
 # Run migrations
@@ -40,5 +41,4 @@ python manage.py collectstatic --noinput
 exec gunicorn backend.wsgi:application \
     --bind 0.0.0.0:$PORT \
     --workers 3 \
-    --timeout 120 \
-    --log-level debug
+    --timeout 120
