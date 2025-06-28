@@ -1,11 +1,7 @@
 #!/bin/bash
 set -o errexit
 
-# Install system dependencies
-apt-get update
-apt-get install -y libpq-dev python3-dev
-
-# Python dependencies
+# Install Python dependencies
 pip install --upgrade pip
 pip install --no-cache-dir -r requirements.txt
 
