@@ -8,8 +8,8 @@ python-dotenv==1.0.0
 daphne==4.0.0
 channels==4.0.0
 twilio==9.0.1
-numpy==1.23.5
-scikit-learn==1.2.2
+numpy==1.24.3
+scikit-learn==1.6.1
 joblib==1.2.0
 dj-database-url==2.1.0
 psycopg2-binary==2.9.9

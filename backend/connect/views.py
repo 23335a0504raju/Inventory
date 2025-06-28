@@ -394,12 +394,13 @@ from django.conf import settings
 import os
 
 try:
-    model_path = os.path.join(settings.BASE_DIR, 'mlp_multi_model.pkl')
-    model = joblib.load(model_path)
+    import numpy as np
+    import sklearn
+    model = joblib.load('mlp_multi_model.pkl')
 except Exception as e:
-    print(f"Error loading model: {str(e)}")
-    model = None  # Or implement fallback behavior
-
+    logger.error(f"Model loading failed: {str(e)}")
+    model = None
+    
 # Then modify your view to check if model exists
 class AnalyticsView(APIView):
     def post(self, request):
@@ -407,9 +408,7 @@ class AnalyticsView(APIView):
             return Response({"error": "Model not loaded"}, status=500)
         # Rest of your view logic
 
-import joblib
-from django.conf import settings
-import os
+
 
 # Initialize model as None at module level
 model = None
