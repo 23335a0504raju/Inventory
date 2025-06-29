@@ -247,11 +247,11 @@ header button.rounded-circle svg:hover {
 }
 .main .sidebarWrapper.toggle {
   width: 60px;
-  flex: 0 0 135px;
+  flex: 0 0 60px;
 }
 
 .main .sidebarWrapper.toggle .sidebar {
-  width: 0;
+  width: 60px;
   overflow: visible;
 }
 .main .sidebarWrapper .sidebar ul{
@@ -431,13 +431,16 @@ header button.rounded-circle svg:hover {
     padding: 8px 15px;
   }
 }
-
 @media (max-width: 480px) {
-  /* Hide Sidebar */
   .main .sidebarWrapper {
-    width: 0;
-    flex: 0 0 0;
+    width: 60px;
+    flex: 0 0 60px;
   }
+
+.main .sidebarWrapper.toggle .sidebar {
+  width: 60px; /* instead of 0 */
+}
+
 
   /* Expand Content to Full Width */
   .main .content {
@@ -784,5 +787,19 @@ header button.rounded-circle svg:hover {
 /* display:flex;
 justify-content: center; */
 
+}
+@media (min-width: 1025px) {
+  .main .sidebarWrapper.toggle .sidebar {
+    width: 60px !important;
+  }
+
+  .main .sidebarWrapper.toggle {
+    width: 60px !important;
+    flex: 0 0 60px !important;
+  }
+
+  .main .content.toggle {
+    width: calc(100% - 60px) !important;
+  }
 }
 
