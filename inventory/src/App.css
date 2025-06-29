@@ -316,7 +316,7 @@ header button.rounded-circle svg:hover {
 .logoutWrapper {
  display: flex;
  flex-direction: column;
- margin-top: 45px;
+ margin-top: 35px;
 }
 
 .logoutWrapper .logoutBox {
@@ -325,7 +325,7 @@ header button.rounded-circle svg:hover {
   padding: 25px;
   background: #e5e8ef;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
   display: flex;
 
 }
