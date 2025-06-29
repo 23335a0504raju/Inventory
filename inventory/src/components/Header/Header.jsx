@@ -51,7 +51,7 @@ const Header=()=>{
     
       const fetchProducts = async () => {
         try {
-          const response = await fetch("https://inventory-iplt.onrender.com/api/products-view/", {
+          const response = await fetch("http://localhost:8000/api/products-view/", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

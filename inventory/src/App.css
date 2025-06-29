@@ -247,11 +247,11 @@ header button.rounded-circle svg:hover {
 }
 .main .sidebarWrapper.toggle {
   width: 60px;
-  flex: 0 0 60px;
+  flex: 0 0 135px;
 }
 
 .main .sidebarWrapper.toggle .sidebar {
-  width: 60px;
+  width: 0;
   overflow: visible;
 }
 .main .sidebarWrapper .sidebar ul{
@@ -431,16 +431,13 @@ header button.rounded-circle svg:hover {
     padding: 8px 15px;
   }
 }
+
 @media (max-width: 480px) {
+  /* Hide Sidebar */
   .main .sidebarWrapper {
-    width: 60px;
-    flex: 0 0 60px;
+    width: 0;
+    flex: 0 0 0;
   }
-
-.main .sidebarWrapper.toggle .sidebar {
-  width: 60px; /* instead of 0 */
-}
-
 
   /* Expand Content to Full Width */
   .main .content {
