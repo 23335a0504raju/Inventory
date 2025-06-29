@@ -119,8 +119,8 @@ import { faBars, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import "../css/nav.css";
 import logo from '../src/Assets/images/logo.png';
+import "./css/nav.css";
 function NavBar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
