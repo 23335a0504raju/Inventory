@@ -230,20 +230,22 @@ header button.rounded-circle svg:hover {
   }
 }
 
-.main .sidebarWrapper{
-  width:20%;
-  flex:0 0 20%;
+.main .sidebarWrapper {
+  width: 250px; /* Fixed width for desktop */
+  flex: 0 0 250px;
   transition: 0.3s all ease-in-out;
 }
 
-.main .sidebarWrapper .sidebar{
-  width:17%;
-  height:100vh;
+.main .sidebarWrapper .sidebar {
+  width: 250px; /* Same as wrapper */
+  height: calc(100vh - 90px); /* Account for header height */
   position: fixed;
-  top:90px;
-  left:0px;
+  top: 90px; /* Below header */
+  left: 0;
   background: white;
   transition: all 0.3s ease-in-out;
+  overflow-y: auto; /* Add scroll if content is long */
+  z-index: 999; /* Ensure it's above other content */
 }
 .main .sidebarWrapper.toggle {
   width: 60px;
@@ -252,7 +254,6 @@ header button.rounded-circle svg:hover {
 
 .main .sidebarWrapper.toggle .sidebar {
   width: 60px;
-  overflow: visible;
 }
 .main .sidebarWrapper .sidebar ul{
   margin-bottom: 0px;
@@ -388,13 +389,13 @@ header button.rounded-circle svg:hover {
 /* Mobile & Tablet View */
 @media (max-width: 992px) {
   .main .sidebarWrapper {
-    width: 300px;
-    flex: 0 0 200px;
-    margin-top: 20px;
+    width: 60px;
+    flex: 0 0 60px;
   }
-
+  
   .main .content {
-    width: calc(100% - 200px);
+    width: calc(100% - 60px);
+    margin-left: 60px;
   }
 
   .main .sidebarWrapper.toggle {
@@ -442,11 +443,18 @@ header button.rounded-circle svg:hover {
 }
 
 
-  /* Expand Content to Full Width */
-  .main .content {
-    width: 100%;
-  }
+.main .content {
+  width: calc(100% - 250px);
+  flex: 0 0 calc(100% - 250px);
+  margin-left: 250px; /* Push content right */
+  transition: all 0.3s ease-in-out;
+}
 
+.main .content.toggle {
+  width: calc(100% - 60px);
+  flex: 0 0 calc(100% - 60px);
+  margin-left: 60px;
+}
   /* Sidebar Toggle */
   .main .sidebarWrapper.toggle {
     width: 50px !important;
