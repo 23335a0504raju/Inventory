@@ -51,7 +51,7 @@ const Header=()=>{
     
       const fetchProducts = async () => {
         try {
-          const response = await fetch("http://localhost:8000/api/products-view/", {
+          const response = await fetch("https://inventory-iplt.onrender.com/api/products-view/", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const Header=()=>{
 
     const fetchData = useCallback(async (username) => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/userprofile/${username}`, { withCredentials: true });
+            const response = await axios.get(`https://inventory-iplt.onrender.com/api/userprofile/${username}`, { withCredentials: true });
             setuserdata(response.data);
             localStorage.setItem("email", response.data.email);
         } catch (error) {
