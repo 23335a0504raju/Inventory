@@ -378,13 +378,14 @@ class InvoiceUpdateStatusView(generics.UpdateAPIView):
 
 import joblib
 import numpy as np
-model = joblib.load('mlp_multi_model.pkl')
+
 from .serializers import PredictionSerializer
 
 
 class ModelPredictView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
+
     def post(self, request):
         print("Data", request.data)
         serializer = PredictionSerializer(data=request.data)
@@ -396,20 +397,20 @@ class ModelPredictView(APIView):
             print("Serialized Data - ", serializer.validated_data)
             data = serializer.validated_data
             season = data['season']
-            rainy, spring, summer, winter = 0,0,0,0
-            if season == 'rainy':
-                rainy = 1
-            if season == 'spring':
-                spring = 1
-            if season =='summer':
-                summer = 1
-            if season == 'winter':
-                winter = 1
-                
+            rainy, spring, summer, winter = 0, 0, 0, 0
+            if season == 'rainy': rainy = 1
+            if season == 'spring': spring = 1
+            if season == 'summer': summer = 1
+            if season == 'winter': winter = 1
+
             features = [data['month'], data['temp'], data['humidity'],
-                        rainy, spring, summer, winter]    
-            prediction = model.predict([features])    
-            prediction_list = list(prediction[0])  
+                        rainy, spring, summer, winter]
+
+            # ✅ Load model here (at runtime)
+            model = joblib.load('mlp_multi_model.pkl')
+            prediction = model.predict([features])
+            prediction_list = list(prediction[0])
             prediction_label = [labels[i] for i, val in enumerate(prediction_list) if val == 1]
             return Response({'prediction': prediction_label}, status=status.HTTP_200_OK)
+
         return Response({"message": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
