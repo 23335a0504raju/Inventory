@@ -322,7 +322,7 @@ header button.rounded-circle svg:hover {
 
 .sidebarWrapper.toggle .sidebar ul li button h6,
 .sidebarWrapper.toggle .sidebar ul li button .arrow {
-  display: none;
+  
 }
 
 .sidebarWrapper.toggle .sidebar ul li button .icon {
@@ -342,7 +342,7 @@ header button.rounded-circle svg:hover {
   
   .sidebar ul li button h6,
   .sidebar ul li button .arrow {
-    display: none;
+   
   }
 }
 
@@ -458,9 +458,7 @@ header button.rounded-circle svg:hover {
     
   }
 
-  .main .sidebarWrapper .sidebar ul li button h6 {
-    display: none;
-  }
+ 
 
   .logoutWrapper .logoutBox {
     padding: 10px;
